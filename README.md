@@ -57,3 +57,11 @@ git add -A
 git commit -m "Initial Angular app"
 git status
 git push
+```
+
+## Material
+
+https://material.angular.io/guide/getting-started
+```
+ng add @angular/material
+```
