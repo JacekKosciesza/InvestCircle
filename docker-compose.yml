@@ -1,0 +1,14 @@
+version: "3.1"
+services:
+  investcircle-frontend:
+    image: codeandpepper/investcircle-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - investcircle
+networks:
+  investcricle:
+    driver: bridge
