@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './balance.component.html',
   styleUrls: ['./balance.component.scss'],
 })
-export class BalanceComponent {}
+export class BalanceComponent {
+  wallet = {
+    name: 'Jacek',
+    currency: 'XLM',
+    ballance: 100000,
+  };
+}

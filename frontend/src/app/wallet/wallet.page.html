@@ -1,7 +1,27 @@
-<h1>Wallet</h1>
+<main>
+  <h1>Wallets</h1>
+  <wallet-balance></wallet-balance>
+  <wallet-deposit></wallet-deposit>
 
-<wallet-balance></wallet-balance>
-<wallet-deposit></wallet-deposit>
-
-<recipients-tab></recipients-tab>
-<transactions-tab></transactions-tab>
+  <nav mat-tab-nav-bar>
+    <a
+      mat-tab-link
+      routerLink="recipients"
+      routerLinkActive
+      #recipients="routerLinkActive"
+      [active]="recipients.isActive"
+      i18n
+      >Recipients</a
+    >
+    <a
+      mat-tab-link
+      routerLink="transactions"
+      routerLinkActive
+      #transactions="routerLinkActive"
+      [active]="transactions.isActive"
+      i18n
+      >Transactions</a
+    >
+  </nav>
+  <router-outlet></router-outlet>
+</main>
