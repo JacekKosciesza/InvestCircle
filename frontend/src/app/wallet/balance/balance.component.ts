@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { Wallet } from '../shared/wallet.model';
 
 @Component({
   selector: 'wallet-balance',
@@ -6,9 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./balance.component.scss'],
 })
 export class BalanceComponent {
+  @Output() deposit = new EventEmitter<Wallet>();
+
   wallet = {
     name: 'Jacek',
     currency: 'XLM',
-    ballance: 100000,
+    balance: 100000,
   };
+
+  onDepositButtonClick(wallet: Wallet): void {
+    this.deposit.emit(wallet);
+  }
 }

@@ -1,7 +1,6 @@
 <main>
-  <h1>Wallets</h1>
-  <wallet-balance></wallet-balance>
-  <wallet-deposit></wallet-deposit>
+  <h1>My wallets</h1>
+  <wallet-balance (deposit)="onDeposit($event)"></wallet-balance>
 
   <nav mat-tab-nav-bar>
     <a
@@ -11,7 +10,7 @@
       #recipients="routerLinkActive"
       [active]="recipients.isActive"
       i18n
-      >Recipients</a
+      >Wallets</a
     >
     <a
       mat-tab-link

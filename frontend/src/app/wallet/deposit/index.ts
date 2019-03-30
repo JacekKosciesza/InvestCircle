@@ -1,1 +1,1 @@
-export * from './deposit.component';
+export * from './deposit.dialog';
