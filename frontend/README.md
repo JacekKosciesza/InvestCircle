@@ -35,3 +35,24 @@ https://github.com/schuchard/prettier-schematic
 yarn add -D @schuchard/prettier
 ng g @schuchard/prettier:add
 ```
+
+## Prefixes, Suffixes
+
+src/tslint.json
+
+```
+"directive-selector": [true, "attribute", "", "camelCase"],
+"component-selector": [true, "element", "", "kebab-case"]
+```
+
+angular.json
+
+```
+"prefix": "",
+```
+
+tslint.json
+
+```
+"component-class-suffix": [true, "Component", "Page", "Tab", "Form", "Modal"],
+```
