@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Identity.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Identity.IdentityServer;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Identity
 {
@@ -38,9 +40,21 @@ namespace Identity
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            // IdentityServer
+            services.AddIdentity<IdentityUser, IdentityRole>(config =>
+            {
+                config.SignIn.RequireConfirmedEmail = true;
+            })
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+            services.AddIdentityServer()
+                .AddSigningCredential(new X509Certificate2(Configuration["Identity:CertificateFilePath"], Configuration["Identity:CertificatePassword"]))
+                .AddInMemoryPersistedGrants()
+                .AddInMemoryIdentityResources(IdentityServerConfig.GetIdentityResources())
+                .AddInMemoryApiResources(IdentityServerConfig.GetApiResources())
+                .AddInMemoryClients(IdentityServerConfig.GetClients(Configuration))
+                .AddAspNetIdentity<IdentityUser>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -65,8 +79,7 @@ namespace Identity
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseAuthentication();
-
+            app.UseIdentityServer();
             app.UseMvc();
         }
     }
