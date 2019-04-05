@@ -31,7 +31,7 @@
               "src/sitemap.xml",
               "src/.well-known"
             ],
-            "styles": ["src/styles.scss"],
+            "styles": ["src/styles.scss", "src/assets/theming/whitelabel-theme.scss"],
             "scripts": []
           },
           "configurations": {

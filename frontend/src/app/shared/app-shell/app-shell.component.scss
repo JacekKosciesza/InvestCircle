@@ -1,0 +1,20 @@
+mat-toolbar {
+  a {
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+mat-sidenav-container {
+  margin: 0;
+  width: 100%;
+  height: calc(100% - 64px);
+  mat-sidenav {
+    > div {
+      height: 100%;
+    }
+    width: 248px;
+    height: 100%;
+    overflow: hidden;
+  }
+}

@@ -3,6 +3,7 @@
 @include mat-core();
 
 @import '../../app/_app.component-theme.scss';
+@import '../../app/shared/app-shell/_app-shell.component.theme.scss';
 
 $dark-primary: mat-palette($mat-pink, A200);
 $dark-accent: mat-palette($mat-light-blue, 600);
@@ -11,3 +12,4 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent);
 
 @include angular-material-theme($dark-theme);
 @include app-component-theme($dark-theme);
+@include app-shell-component-theme($dark-theme);

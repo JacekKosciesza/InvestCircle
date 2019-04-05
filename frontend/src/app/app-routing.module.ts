@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AppShellComponent } from './shared';
+
 const routes: Routes = [
-  { path: 'identity', loadChildren: './identity/identity.module#IdentityModule' },
-  { path: 'wallet', loadChildren: './wallet/wallet.module#WalletModule' },
-  { path: 'help', loadChildren: './help/help.module#HelpModule' },
-  { path: '', redirectTo: '/wallet', pathMatch: 'full' },
+  {
+    path: '',
+    component: AppShellComponent,
+    children: [
+      { path: 'wallet', loadChildren: './wallet/wallet.module#WalletModule' },
+      { path: 'help', loadChildren: './help/help.module#HelpModule' },
+      { path: '', redirectTo: '/wallet', pathMatch: 'full' },
+    ],
+  },
 ];
 
 @NgModule({

@@ -2,8 +2,22 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const DOMAIN = 'https://localhost:5001';
+
 export const environment = {
   production: false,
+  features: {
+    identity: {
+      enabled: true,
+      endpoint: `${DOMAIN}/connect/token`,
+    },
+    wallet: {
+      enabled: true,
+    },
+    help: {
+      enabled: true,
+    },
+  },
 };
 
 /*
