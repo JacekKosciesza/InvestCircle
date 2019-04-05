@@ -1,0 +1,5 @@
+/* SITE */
+Last update: 2019/04/05
+Standards: HTML5, CSS3, TypeScript
+Components: Angular, Angular Material, Angular Flex Layout, ngrx, ASP.NET Core, Entity Framework Core
+IDE: Visual Studio Code, Visual Studio
