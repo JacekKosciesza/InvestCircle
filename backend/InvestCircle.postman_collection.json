@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "3a6cc7b4-24fa-4e17-9a88-f580c13e84fb",
+		"name": "InvestCircle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Identity",
+			"item": [
+				{
+					"name": "OpenID configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{identity_host}}/.well-known/openid-configuration",
+							"protocol": "https",
+							"host": [
+								"{{identity_host}}"
+							],
+							"path": [
+								".well-known",
+								"openid-configuration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Connect token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4898e362-b861-40d2-aaa4-0628e10a3597",
+								"exec": [
+									"var json = JSON.parse(responseBody);",
+									"pm.environment.set(\"access_token\", json.access_token);",
+									"",
+									"var token = json.access_token;",
+									"",
+									"var base64Url = token.split('.')[1];",
+									"var base64 = base64Url.replace('-', '+').replace('_', '/');",
+									"var jwt = JSON.parse(atob(base64));",
+									"",
+									"console.log(jwt);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "j.kosciesza@codeandpepper.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "P@ssw0rd",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "api.investcircle.org openid profile roles email offline_access",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "investcircle.org",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "secret",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{identity_host}}/connect/token",
+							"protocol": "https",
+							"host": [
+								"{{identity_host}}"
+							],
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f2451d3b-d683-4dc9-8083-99a311ea3484",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{identity_host}}/connect/userinfo",
+							"protocol": "https",
+							"host": [
+								"{{identity_host}}"
+							],
+							"path": [
+								"connect",
+								"userinfo"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3c0b3123-806b-4f64-bccc-7848fdc0e5b6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7374692d-b679-40f2-9c79-ef515b22179c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "Get a list of wallets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{wallet_host}}/api/wallets",
+							"protocol": "https",
+							"host": [
+								"{{wallet_host}}"
+							],
+							"path": [
+								"api",
+								"wallets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

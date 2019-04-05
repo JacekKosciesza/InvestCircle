@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngFor="let wallet of wallets">
   <mat-card-header>
     <div mat-card-avatar class="{{ wallet.currency | lowercase }}"></div>
     <mat-card-title>{{ wallet.name }}</mat-card-title>

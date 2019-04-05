@@ -1,6 +1,6 @@
 <main>
   <h1>My wallets</h1>
-  <wallet-balance (deposit)="onDeposit($event)"></wallet-balance>
+  <wallet-balance [wallets]="wallets$ | async" (deposit)="onDeposit($event)"></wallet-balance>
 
   <nav mat-tab-nav-bar>
     <a
