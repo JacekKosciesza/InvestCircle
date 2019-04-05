@@ -1,3 +1,8 @@
-<mat-toolbar>Invest Circle</mat-toolbar>
+<mat-progress-bar [style.display]="(spinner$ | async) ? 'block' : 'none'" mode="indeterminate"></mat-progress-bar>
+
+<mat-toolbar fxLayout fxLayoutAlign="space-between center">
+  Invest Circle
+  <button mat-button i18n>Login</button>
+</mat-toolbar>
 
 <router-outlet></router-outlet>

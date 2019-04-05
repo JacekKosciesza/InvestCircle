@@ -1,0 +1,20 @@
+@import '~@angular/material/theming';
+
+@mixin app-component-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  a {
+    color: mat-color($accent);
+  }
+  mat-nav-list {
+    mat-icon {
+      color: grey;
+    }
+    .active {
+      h4,
+      mat-icon {
+        color: mat-color($primary);
+      }
+    }
+  }
+}

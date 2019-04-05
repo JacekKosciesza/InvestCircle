@@ -54,5 +54,5 @@ angular.json
 tslint.json
 
 ```
-"component-class-suffix": [true, "Component", "Page", "Tab", "Form", "Modal"],
+"component-class-suffix": [true, "Component", "Page", "Tab", "Form", "Dialog"],
 ```

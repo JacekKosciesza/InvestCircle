@@ -74,7 +74,7 @@
     "no-output-rename": true,
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
-    "component-class-suffix": [true, "Component", "Page", "Tab", "Form", "Modal"],
+    "component-class-suffix": [true, "Component", "Page", "Tab", "Form", "Dialog"],
     "directive-class-suffix": true
   },
   "extends": "tslint-config-prettier"

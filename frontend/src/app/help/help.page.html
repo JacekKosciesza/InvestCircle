@@ -1,0 +1,14 @@
+<main>
+  <nav mat-tab-nav-bar class="ff-tab-nav-bar">
+    <a mat-tab-link routerLink="about" routerLinkActive #about="routerLinkActive" [active]="about.isActive" i18n
+      >About</a
+    >
+    <a mat-tab-link routerLink="terms" routerLinkActive #terms="routerLinkActive" [active]="terms.isActive" i18n
+      >Terms</a
+    >
+    <a mat-tab-link routerLink="privacy" routerLinkActive #privacy="routerLinkActive" [active]="privacy.isActive" i18n
+      >Privacy</a
+    >
+  </nav>
+  <router-outlet></router-outlet>
+</main>
