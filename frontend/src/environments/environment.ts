@@ -6,10 +6,16 @@ const DOMAIN = 'https://localhost:5001';
 
 export const environment = {
   production: false,
+  domain: DOMAIN,
+  tokenKey: 'token',
+  defaultRedirectUrl: '/wallet',
   features: {
     identity: {
       enabled: true,
       endpoint: `${DOMAIN}/connect/token`,
+      clientId: 'investcircle.org',
+      clientSecret: 'secret',
+      scope: 'api.investcircle.org openid profile roles email offline_access',
     },
     wallet: {
       enabled: true,

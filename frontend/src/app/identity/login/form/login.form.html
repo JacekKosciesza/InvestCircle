@@ -1,1 +1,46 @@
-<h2>Form</h2>
+<!-- <error-block [error]="error"></error-block> -->
+<mat-card fxLayout="column" fxLayoutAlign="center">
+  <h1 fxFlexAlign="center">Login</h1>
+  <mat-card-subtitle>Login using existing account:</mat-card-subtitle>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate fxLayout="column" fxLayoutAlign="center">
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="Email"
+          formControlName="email"
+          required
+          autofocus
+          autocomplete="email"
+          #emailInput
+          i18n-placeholder
+        />
+        <mat-error *ngIf="emailControl.hasError('required')" i18n>Email is required</mat-error>
+        <mat-error *ngIf="emailControl.hasError('email')">Email is incorrect</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          type="password"
+          matInput
+          placeholder="Password"
+          formControlName="password"
+          required
+          autocomplete="current-password"
+          i18n-placeholder
+        />
+        <mat-error *ngIf="passwordControl.hasError('required')" i18n>Password is required</mat-error>
+      </mat-form-field>
+
+      <!-- <mat-checkbox formControlName="rememberMe">Remember me</mat-checkbox> -->
+
+      <button type="submit" mat-raised-button color="accent" i18n>Login</button>
+    </form>
+    <!-- <a routerLink="/password/forgot">I forgot my password</a> -->
+  </mat-card-content>
+  <!-- <mat-card-actions fxLayout="row-reverse" fxLayoutAlign="space-between start">
+    <a mat-button color="primary" routerLink="/register" i18n>Register</a>
+    <a mat-button routerLink="/" i18n>Cancel</a>
+  </mat-card-actions> -->
+</mat-card>

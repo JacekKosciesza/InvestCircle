@@ -1,0 +1,17 @@
+// JWT - JSON Web Token
+export class JWT {
+  constructor(private header, private payload, private signature) {}
+
+  toString(): string {
+    const parts: Array<string> = [this.header, this.payload, this.signature];
+    return parts.join('.');
+  }
+}
+
+// tslint:disable:max-line-length
+export const testJWT: JWT = new JWT(
+  'eyJhbGciOiJSUzI1NiIsImtpZCI6IjIyMEVEQURFMTQ2QzE1NjY3M0NBOEY2NEYwMTlFREJFNjE3OEM5QjYiLCJ0eXAiOiJKV1QiLCJ4NXQiOiJJZzdhM2hSc0ZXWnp5bzlrOEJudHZtRjR5YlkifQ',
+  'eyJuYmYiOjE1NDAxMDk0NjIsImV4cCI6MTU3MTY0NTQ2MiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSIsImF1ZCI6WyJodHRwczovL2xvY2FsaG9zdDo1MDAxL3Jlc291cmNlcyIsImFwaS5zZXh1YWxjaGFsbGVuZ2UuY29tIl0sImNsaWVudF9pZCI6InNleHVhbGNoYWxsZW5nZS5jb20iLCJzdWIiOiIzNDZiYmRjOS00ZGUxLTQ5NmUtYmU3MS00NmIwNjU0NzQyNzQiLCJhdXRoX3RpbWUiOjE1NDAxMDk0NjIsImlkcCI6ImxvY2FsIiwicHJlZmVycmVkX3VzZXJuYW1lIjpbIkphY2VrIEtvxZtjaWVzemEiLCJqYWNlay5rb3NjaWVzemFAZ21haWwuY29tIl0sInBpY3R1cmUiOiIvYXNzZXRzL3VzZXJzL2phY2VrLWtvc2NpZXN6YS5qcGciLCJyb2xlIjoiQWRtaW4iLCJlbWFpbCI6ImphY2VrLmtvc2NpZXN6YUBnbWFpbC5jb20iLCJzY29wZSI6WyJlbWFpbCIsIm9wZW5pZCIsInByb2ZpbGUiLCJyb2xlcyIsImFwaS5zZXh1YWxjaGFsbGVuZ2UuY29tIiwib2ZmbGluZV9hY2Nlc3MiXSwiYW1yIjpbInB3ZCJdfQ',
+  'nR9LZNcELLnRJfospYDwZCrmcWFV3AqFCrUzQFDOHKeeXpFqTOncmHYxzrY535fyrF7dlSTmKGqAoU1y668oMeCf0JWhCKDRD8GKGdrbsiaUoo5kNYUUOj0QF-1dAQZ8a5eOCo3KcjpbLcDU4azsaJRb3f6VsWV5vJtcIazT9hXRlNbhCHYcuoehlgv9vPGsfcRSbnK9aSChlQIGjUBiW0GwsP-QxUQbNqCVKbmSlUp7uIfakjvMM5UxjpEtTge6VHwVgnlFmT0yTDp6Ptmo2VeeNRng7vsLvhYjmsB87rXiagf3r7cd2tdUseuO0LTeaFzftyga_NSlY5NfXURJ6w',
+);
+// tslint:enable:max-line-length

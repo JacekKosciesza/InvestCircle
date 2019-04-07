@@ -1,2 +1,9 @@
-<h1>Login</h1>
-<login-form></login-form>
+<main>
+  <img src="/assets/img/logo.svg" height="90" alt="Invest Circle logo" />
+  <login-form
+    [loginForm]="loginForm | async"
+    [error]="error | async"
+    (update)="onUpdate($event)"
+    (login)="onLogin($event)"
+  ></login-form>
+</main>

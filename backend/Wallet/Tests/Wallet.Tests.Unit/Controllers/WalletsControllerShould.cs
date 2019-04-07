@@ -10,13 +10,13 @@ namespace Wallet.Tests.Unit.Controllers.Acceptance
         [Fact]
         public void ReturnListOfWallets()
         {
-            // arrange
+            // Arrange
             var controller = new WalletsController();
 
-            // act
+            // Act
             var response = controller.GetListOfWallets();
 
-            // assert
+            // Assert
             var okResult = response as OkObjectResult;
             Assert.NotNull(okResult);
             Assert.Equal(200, okResult.StatusCode);
