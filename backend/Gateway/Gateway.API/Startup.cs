@@ -3,6 +3,7 @@ using Gateway.GraphQL;
 using GraphQL;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,11 +32,21 @@ namespace Gateway
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            // Authentication
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+            .AddIdentityServerAuthentication(options =>
+            {
+                options.Authority = Configuration["InvestCircle:Identity:AuthorityUrl"];
+                options.ApiName = Configuration["InvestCircle:Identity:ApiName"];
+            });
+            services.AddHttpContextAccessor();
+
             // GraphQL
             services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
             services.AddScoped<InvestCircleSchema>();
             services.AddGraphQL(o => { o.ExposeExceptions = true; })
-               .AddGraphTypes(ServiceLifetime.Scoped);
+               .AddGraphTypes(ServiceLifetime.Scoped)
+               .AddUserContextBuilder(httpContext => httpContext.User);
 
             // Wallet
             services.AddHttpClient<IWalletService, WalletService>();
@@ -56,6 +67,7 @@ namespace Gateway
 
             app.UseHttpsRedirection();
             app.UseCors("AllowAllOrigins");
+            app.UseAuthentication();
             app.UseGraphQL<InvestCircleSchema>();
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
             app.UseMvc();

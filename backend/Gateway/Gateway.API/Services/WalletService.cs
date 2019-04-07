@@ -15,8 +15,9 @@ namespace Gateway.API.Services
             _httpClient = httpClient;
         }
 
-        public async Task<ICollection<Wallet>> GetWallets()
+        public async Task<ICollection<Wallet>> GetWallets(string authorizationHeaderValue)
         {
+            _httpClient.DefaultRequestHeaders.Add("Authorization", authorizationHeaderValue);
             var httpResponse = await _httpClient.GetAsync("https://localhost:5003/api/wallets");
             var wallets = await httpResponse.Content.ReadAsAsync<List<Wallet>>();
             return wallets;

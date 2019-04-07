@@ -34,7 +34,7 @@ namespace Wallet
                                      .RequireAuthenticatedUser()
                                      .AddAuthenticationSchemes(new string[] { "Bearer" })
                                      .Build();
-                //config.Filters.Add(new AuthorizeFilter(policy));
+                config.Filters.Add(new AuthorizeFilter(policy));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Authentication

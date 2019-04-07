@@ -6,6 +6,6 @@ namespace Gateway.API.Services
 {
     public interface IWalletService
     {
-        Task<ICollection<Wallet>> GetWallets();
+        Task<ICollection<Wallet>> GetWallets(string authorizationHeaderValue);
     }
 }
