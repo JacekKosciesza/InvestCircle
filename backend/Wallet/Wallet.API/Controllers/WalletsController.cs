@@ -4,6 +4,7 @@ using Swashbuckle.AspNetCore.Filters;
 using System.Collections.Generic;
 using Wallet.API.Swagger;
 
+[assembly:ApiConventionType(typeof(DefaultApiConventions))]
 namespace Wallet.Controllers
 {
     [Route("api/[controller]")]

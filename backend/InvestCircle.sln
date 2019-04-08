@@ -22,31 +22,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.Tests.Acceptance", "Wallet\Tests\Wallet.Tests.Acceptance\Wallet.Tests.Acceptance.csproj", "{A5803F8A-D1AA-453C-8D34-9C01F24DAED0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.Tests.Acceptance", "Wallet\Tests\Wallet.Tests.Acceptance\Wallet.Tests.Acceptance.csproj", "{A5803F8A-D1AA-453C-8D34-9C01F24DAED0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.Tests.Unit", "Wallet\Tests\Wallet.Tests.Unit\Wallet.Tests.Unit.csproj", "{AF9960F1-EC31-4F34-9CAE-C8288126585A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.Tests.Unit", "Wallet\Tests\Wallet.Tests.Unit\Wallet.Tests.Unit.csproj", "{AF9960F1-EC31-4F34-9CAE-C8288126585A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.Tests.Integration", "Wallet\Tests\Wallet.Tests.Integration\Wallet.Tests.Integration.csproj", "{27539B91-5E11-47D3-9898-DC92CF5ACFB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.Tests.Integration", "Wallet\Tests\Wallet.Tests.Integration\Wallet.Tests.Integration.csproj", "{27539B91-5E11-47D3-9898-DC92CF5ACFB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway.Tests.Unit", "Gateway\Tests\Gateway.Tests.Unit\Gateway.Tests.Unit.csproj", "{37453AB8-E7B8-4BE7-91FB-B596FD486D86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway.Tests.Unit", "Gateway\Tests\Gateway.Tests.Unit\Gateway.Tests.Unit.csproj", "{37453AB8-E7B8-4BE7-91FB-B596FD486D86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway.Tests.Integration", "Gateway\Tests\Gateway.Tests.Integration\Gateway.Tests.Integration.csproj", "{A7513061-32F2-4A9E-80ED-D649C9AB2BE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway.Tests.Integration", "Gateway\Tests\Gateway.Tests.Integration\Gateway.Tests.Integration.csproj", "{A7513061-32F2-4A9E-80ED-D649C9AB2BE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Tests.Acceptance", "Identity\Tests\Identity.Tests.Acceptance\Identity.Tests.Acceptance.csproj", "{7317D92D-135E-481E-A1C0-13BD6303B412}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Tests.Acceptance", "Identity\Tests\Identity.Tests.Acceptance\Identity.Tests.Acceptance.csproj", "{7317D92D-135E-481E-A1C0-13BD6303B412}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Tests.Integration", "Identity\Tests\Identity.Tests.Integration\Identity.Tests.Integration.csproj", "{E1034CE5-6480-4FD2-8F49-4D06141109E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Tests.Integration", "Identity\Tests\Identity.Tests.Integration\Identity.Tests.Integration.csproj", "{E1034CE5-6480-4FD2-8F49-4D06141109E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Tests.Unit", "Identity\Tests\Identity.Tests.Unit\Identity.Tests.Unit.csproj", "{D3EB5A7E-19B3-48B3-A75E-9800421BA6AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Tests.Unit", "Identity\Tests\Identity.Tests.Unit\Identity.Tests.Unit.csproj", "{D3EB5A7E-19B3-48B3-A75E-9800421BA6AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.Stellar", "Wallet\Wallet.Stellar\Wallet.Stellar.csproj", "{B976F5A0-3FD2-4405-95D7-C48D5C2FBFCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.Stellar", "Wallet\Wallet.Stellar\Wallet.Stellar.csproj", "{B976F5A0-3FD2-4405-95D7-C48D5C2FBFCB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.API", "Wallet\Wallet.API\Wallet.API.csproj", "{CB0951D4-4363-4FEC-BD7F-B80076EC7AC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.Core", "Wallet\Wallet.Core\Wallet.Core.csproj", "{53BA2E7E-7AD4-442D-A07B-B8772E0CB12D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.Core", "Wallet\Wallet.Core\Wallet.Core.csproj", "{53BA2E7E-7AD4-442D-A07B-B8772E0CB12D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway.API", "Gateway\Gateway.API\Gateway.API.csproj", "{53B112B3-E941-4719-A05A-C086E0824530}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.API", "Identity\Identity.API\Identity.API.csproj", "{2CDFF600-B643-43C4-986B-3F59F6E5DC9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chat", "Chat", "{CA8D19BC-3A62-434A-8FAB-4BEE309A5DA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat.API", "Chat\Chat.API\Chat.API.csproj", "{CAF56EE0-CD13-46D1-BE46-4CF0FE18F91B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,6 +114,10 @@ Global
 		{2CDFF600-B643-43C4-986B-3F59F6E5DC9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CDFF600-B643-43C4-986B-3F59F6E5DC9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CDFF600-B643-43C4-986B-3F59F6E5DC9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAF56EE0-CD13-46D1-BE46-4CF0FE18F91B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAF56EE0-CD13-46D1-BE46-4CF0FE18F91B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAF56EE0-CD13-46D1-BE46-4CF0FE18F91B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAF56EE0-CD13-46D1-BE46-4CF0FE18F91B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,6 +140,7 @@ Global
 		{53BA2E7E-7AD4-442D-A07B-B8772E0CB12D} = {D9F29641-E446-412B-A0A1-C5BF648A5884}
 		{53B112B3-E941-4719-A05A-C086E0824530} = {A051EB72-E6A4-4104-A320-CB11BFA6E3CD}
 		{2CDFF600-B643-43C4-986B-3F59F6E5DC9A} = {C5D8C271-1A8D-480F-B650-CB9EABC33F1A}
+		{CAF56EE0-CD13-46D1-BE46-4CF0FE18F91B} = {CA8D19BC-3A62-434A-8FAB-4BEE309A5DA1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA7318D5-C404-40D5-A00B-4FDF7A15FBCE}

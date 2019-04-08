@@ -1,5 +1,6 @@
 ﻿using Gateway.API.Services;
 using MaxKagamine.Moq.HttpClient;
+using Microsoft.AspNetCore.Http;
 using Moq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -28,7 +29,9 @@ namespace Gateway.Tests.Unit.Services
             };
             httpMessageHandler.SetupRequest(HttpMethod.Get, "https://localhost:5003/api/wallets")
             .ReturnsResponse(JsonConvert.SerializeObject(list), "application/json");
-            var walletsService = new WalletService(httpClient);
+            var httpContext = new Mock<IHttpContextAccessor>();
+            httpContext.SetupGet(m => m.HttpContext.Request.Headers["Authorization"]).Returns("Bearer XYZ");
+            var walletsService = new WalletService(httpClient, httpContext.Object);
 
             // Act
             var wallets = await walletsService.GetWallets();

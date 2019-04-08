@@ -9,20 +9,17 @@ namespace Gateway.GraphQL
     public class InvestCircleQuery : ObjectGraphType
     {
         private readonly IWalletService _walletService;
-        private readonly IHttpContextAccessor _httpContext;
 
-        public InvestCircleQuery(IWalletService walletService, IHttpContextAccessor httpContext)
+        public InvestCircleQuery(IWalletService walletService)
         {
             _walletService = walletService;
-            _httpContext = httpContext;
 
             Field<ListGraphType<WalletType>>(
                 "wallets",
                 resolve: context =>
                 {
                     var user = (ClaimsPrincipal)context.UserContext;
-                    var authorizationHeaderValue = _httpContext.HttpContext.Request.Headers["Authorization"];
-                    return _walletService.GetWallets(authorizationHeaderValue);
+                    return _walletService.GetWallets();
                 }
             );
         }

@@ -18,23 +18,27 @@ namespace Wallet
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(config =>
             {
-                var policy = new AuthorizationPolicyBuilder()
+                if (!Environment.EnvironmentName.StartsWith("test")) {
+                    var policy = new AuthorizationPolicyBuilder()
                                      .RequireAuthenticatedUser()
                                      .AddAuthenticationSchemes(new string[] { "Bearer" })
                                      .Build();
-                config.Filters.Add(new AuthorizeFilter(policy));
+                    config.Filters.Add(new AuthorizeFilter(policy));
+                }
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Authentication
@@ -83,9 +87,9 @@ namespace Wallet
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
+            if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
