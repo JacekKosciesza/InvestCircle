@@ -2,17 +2,21 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const DOMAIN = 'https://localhost:5001';
+const IDENTITY_URL = 'https://localhost:5001';
+const GATEWAY_URL = 'https://localhost:6001';
 
 export const environment = {
   production: false,
-  domain: DOMAIN,
+  domain: IDENTITY_URL,
   tokenKey: 'token',
   defaultRedirectUrl: '/wallet',
   features: {
+    gateway: {
+      endpoint: GATEWAY_URL,
+    },
     identity: {
       enabled: true,
-      endpoint: `${DOMAIN}/connect/token`,
+      endpoint: `${IDENTITY_URL}/connect/token`,
       clientId: 'investcircle.org',
       clientSecret: 'secret',
       scope: 'api.investcircle.org openid profile roles email offline_access',

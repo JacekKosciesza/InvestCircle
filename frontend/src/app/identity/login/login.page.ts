@@ -24,7 +24,6 @@ export class LoginPage implements OnInit, OnDestroy {
   onUpdate(from: LoginModel): void {}
 
   onLogin(form: LoginModel): void {
-    debugger;
     this.identityService
       .login(form.email, form.password)
       .pipe(takeUntil(this.unsubscribe))

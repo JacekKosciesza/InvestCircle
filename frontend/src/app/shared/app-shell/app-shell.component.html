@@ -1,6 +1,7 @@
 <mat-toolbar fxLayout fxLayoutAlign="space-between center">
   Invest Circle
-  <button mat-button routerLink="/login" i18n>Login</button>
+  <button *ngIf="!(user$ | async)" mat-button (click)="onLogin()" i18n>Login</button>
+  <span *ngIf="(user$ | async)">{{ user$ | async }}</span>
 </mat-toolbar>
 
 <mat-sidenav-container>

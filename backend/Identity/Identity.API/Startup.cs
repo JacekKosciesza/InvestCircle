@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using HealthChecks.UI.Client;
 
 namespace Identity
 {
@@ -54,6 +57,15 @@ namespace Identity
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            // Health checks
+            // https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/implement-resilient-applications/monitor-app-health
+            // https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks
+            var hcBuilder = services.AddHealthChecks();
+            hcBuilder.AddSqlServer(
+                Configuration["ConnectionStrings:DefaultConnection"],
+                name: "Database",
+                tags: new string[] { "database", "identity" });
+
             services.AddTransient<IdentitySeed>();
         }
 
@@ -75,7 +87,11 @@ namespace Identity
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseHealthChecks("/hc", new HealthCheckOptions()
+            {
+                Predicate = _ => true,
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
             app.UseIdentityServer();
             app.UseMvc();
 

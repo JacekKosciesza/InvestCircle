@@ -1,6 +1,8 @@
-﻿using IdentityServer4.AccessTokenValidation;
+﻿using HealthChecks.UI.Client;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -48,6 +50,9 @@ namespace Wallet
                 options.Authority = Configuration["InvestCircle:Identity:AuthorityUrl"];
                 options.ApiName = Configuration["InvestCircle:Identity:ApiName"];
             });
+
+            // Health checks
+            services.AddHealthChecks();
 
             // Swagger
             services.AddSwaggerExamplesFromAssemblyOf<GetListOfWalletsResponse>();
@@ -100,9 +105,13 @@ namespace Wallet
             }
 
             app.UseHttpsRedirection();
+            app.UseHealthChecks("/hc", new HealthCheckOptions()
+            {
+                Predicate = _ => true,
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
             app.UseAuthentication();
             app.UseMvc();
-
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

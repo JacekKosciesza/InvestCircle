@@ -3,8 +3,10 @@ using Gateway.GraphQL;
 using GraphQL;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
+using HealthChecks.UI.Client;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -48,6 +50,9 @@ namespace Gateway
                .AddGraphTypes(ServiceLifetime.Scoped)
                .AddUserContextBuilder(httpContext => httpContext.User);
 
+            // Health checks
+            services.AddHealthChecks();
+
             // Wallet
             services.AddHttpClient<IWalletService, WalletService>();
         }
@@ -67,6 +72,11 @@ namespace Gateway
 
             app.UseHttpsRedirection();
             app.UseCors("AllowAllOrigins");
+            app.UseHealthChecks("/hc", new HealthCheckOptions()
+            {
+                Predicate = _ => true,
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
             app.UseAuthentication();
             app.UseGraphQL<InvestCircleSchema>();
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
