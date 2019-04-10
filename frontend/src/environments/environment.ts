@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 const IDENTITY_URL = 'https://localhost:5001';
-const GATEWAY_URL = 'https://localhost:6001';
+const GATEWAY_URL = 'https://localhost:6001/graphql';
 
 export const environment = {
   production: false,
@@ -15,6 +15,7 @@ export const environment = {
       endpoint: GATEWAY_URL,
     },
     identity: {
+      whitelistedDomains: [IDENTITY_URL, GATEWAY_URL],
       enabled: true,
       endpoint: `${IDENTITY_URL}/connect/token`,
       clientId: 'investcircle.org',

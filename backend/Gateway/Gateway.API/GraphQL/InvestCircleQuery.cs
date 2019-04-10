@@ -1,7 +1,6 @@
 ﻿using Gateway.API.Services;
 using Gateway.GraphQL.Types;
 using GraphQL.Types;
-using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
 namespace Gateway.GraphQL
