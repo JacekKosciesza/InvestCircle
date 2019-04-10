@@ -9,13 +9,11 @@ import { environment } from 'src/environments/environment';
 
 const GET_USER = gql`
   {
-    user @client
-  }
-`;
-
-const SET_USER = gql`
-  mutation SetUser($user: String!) {
-    setUser(user: $user) @client
+    user @client {
+      name
+      email
+      photo
+    }
   }
 `;
 
@@ -39,17 +37,6 @@ export class AppShellComponent implements OnInit, OnDestroy {
         query: GET_USER,
       })
       .valueChanges.pipe(map(result => result.data && result.data.user));
-  }
-
-  onLogin(): void {
-    this.apollo
-      .mutate({
-        mutation: SET_USER,
-        variables: {
-          user: 'Jacek',
-        },
-      })
-      .subscribe();
   }
 
   ngOnDestroy(): void {

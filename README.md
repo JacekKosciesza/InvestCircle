@@ -74,3 +74,8 @@ ng add @angular/material
 
 https://github.com/features/actions
 https://github.com/filipesilva/ng-github-actions
+
+
+# Goals
+Fast, Secure, Intelligent, Reliablity, Agility, Green field,
+Infrastructure automation

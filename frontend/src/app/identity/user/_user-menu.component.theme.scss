@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+@mixin user-menu-component-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  .dark-theme-description {
+    color: mat-color($foreground, 'text');
+  }
+
+  .header {
+    background-color: rgba(136, 136, 136, 0.4);
+  }
+}

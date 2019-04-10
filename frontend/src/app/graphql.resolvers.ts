@@ -6,7 +6,7 @@ export const resolvers = {
           user: variables.user,
         },
       });
-      return null;
+      return variables.user;
     },
   },
 };

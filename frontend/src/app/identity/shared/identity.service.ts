@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, of, from, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 
 import { Token } from './token.model';
 import { User } from './user.model';
@@ -31,6 +31,7 @@ export class IdentityService {
       })
       .pipe(
         map(response => ((response as any).data ? (response as any).data : response)),
+        tap((token: Token) => localStorage.setItem(environment.tokenKey, token.access_token)),
         catchError((httpErrorResponse: HttpErrorResponse) => {
           const response = this.createLoginErrorResponse(httpErrorResponse);
           return throwError(response);
@@ -53,6 +54,7 @@ export class IdentityService {
       name: `${decodedToken.given_name} ${decodedToken.family_name}`,
       photo: decodedToken.picture,
       admin: decodedToken.role === 'Admin',
+      __typename: 'User',
     };
 
     return of(user);

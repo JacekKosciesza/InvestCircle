@@ -14,6 +14,7 @@ import {
 
 import { AppShellComponent } from './app-shell.component';
 import { SharedModule } from '../shared.module';
+import { UserMenuModule } from 'src/app/identity/user';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { SharedModule } from '../shared.module';
     MatTooltipModule,
     MatButtonModule,
     SharedModule,
+    UserMenuModule,
   ],
   exports: [AppShellComponent],
   declarations: [AppShellComponent],

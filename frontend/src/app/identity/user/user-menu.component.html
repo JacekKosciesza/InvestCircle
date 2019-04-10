@@ -1,0 +1,133 @@
+<button
+  mat-icon-button
+  [matMenuTriggerFor]="profile"
+  matTooltip="Settings"
+  matTooltipShowDelay="500"
+  i18n-matTooltip
+  [matTooltipDisabled]="user"
+>
+  <img src="{{ user.photo }}" alt="{{ user.name }}" width="32" height="32" style="border-radius: 50%;" *ngIf="user" />
+  <mat-icon *ngIf="!user">more_vert</mat-icon>
+</button>
+<mat-menu #profile="matMenu" [overlapTrigger]="false" xPosition="before" [ngSwitch]="mode" (closed)="menuClosed()">
+  <ng-template [ngSwitchCase]="modeEnum.main">
+    <mat-list *ngIf="user" class="header">
+      <mat-list-item>
+        <img mat-list-avatar src="{{ user.photo }}" alt="{{ user.name }}" />
+        <h4 mat-line>{{ user.name }}</h4>
+        <p mat-line>{{ user.email }}</p>
+      </mat-list-item>
+    </mat-list>
+    <mat-nav-list>
+      <ng-container *ngIf="user">
+        <a routerLink="/profile" mat-list-item>
+          <mat-icon mat-list-icon>account_box</mat-icon>
+          <h4 mat-line i18n>Profile</h4>
+        </a>
+        <a (click)="onLogoutClick()" mat-list-item>
+          <mat-icon mat-list-icon>exit_to_app</mat-icon>
+          <h4 mat-line i18n>Sign out</h4>
+        </a>
+        <mat-divider></mat-divider>
+      </ng-container>
+      <a mat-list-item (click)="$event.stopPropagation(); mode = modeEnum.theme">
+        <mat-icon mat-list-icon>brightness_4</mat-icon>
+        <h4 mat-line i18n *ngIf="(isDarkTheme | async)" i18n>Dark theme: On</h4>
+        <h4 mat-line i18n *ngIf="!(isDarkTheme | async)" i18n>Dark theme: Off</h4>
+        <mat-icon>navigate_next</mat-icon>
+      </a>
+      <a mat-list-item (click)="$event.stopPropagation(); mode = modeEnum.language">
+        <mat-icon mat-list-icon>translate</mat-icon>
+        <h4 mat-line i18n>Language: {{ (selectedLanguage | async)?.name }}</h4>
+        <mat-icon>navigate_next</mat-icon>
+      </a>
+      <a routerLink="/settings" mat-list-item>
+        <mat-icon mat-list-icon>settings</mat-icon>
+        <h4 mat-line i18n>Settings</h4>
+      </a>
+      <a routerLink="/help" mat-list-item>
+        <mat-icon mat-list-icon>help</mat-icon>
+        <h4 mat-line i18n>Help</h4>
+      </a>
+      <a mat-list-item (click)="sendFeedback()">
+        <mat-icon mat-list-icon>feedback</mat-icon>
+        <h4 mat-line i18n>Send feedback</h4>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item (click)="$event.stopPropagation(); mode = modeEnum.location">
+        <mat-icon mat-list-icon>place</mat-icon>
+        <h4 mat-line i18n>Location: Poland</h4>
+        <mat-icon>navigate_next</mat-icon>
+      </a>
+    </mat-nav-list>
+  </ng-template>
+  <ng-template [ngSwitchCase]="modeEnum.theme">
+    <div (click)="$event.stopPropagation()">
+      <mat-toolbar>
+        <button
+          mat-icon-button
+          aria-label="Go back"
+          i18n-aria-label
+          (click)="$event.stopPropagation(); mode = modeEnum.main"
+        >
+          <mat-icon class="md-24">arrow_back</mat-icon>
+        </button>
+        <span>Dark theme</span>
+      </mat-toolbar>
+      <div class="dark-theme-description" fxLayout="column">
+        <p i18n>
+          Dark theme turns the light surfaces of the page dark, creating an experience ideal for night. Try it out!
+        </p>
+        <p i18n>Your Dark theme setting will apply to this browser only.</p>
+        <div fxLayout fxLayoutAlign="space-between center">
+          <span class="capitalized">Dark theme</span>
+          <mat-slide-toggle (change)="switchTheme($event)" [checked]="isDarkTheme | async"></mat-slide-toggle>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template [ngSwitchCase]="modeEnum.language">
+    <mat-toolbar (click)="$event.stopPropagation()">
+      <button
+        mat-icon-button
+        aria-label="Go back"
+        i18n-aria-label
+        (click)="$event.stopPropagation(); mode = modeEnum.main"
+      >
+        <mat-icon class="md-24">arrow_back</mat-icon>
+      </button>
+      <span i18n>Choose your language</span>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let language of (languages | async)">
+        <mat-icon mat-list-icon *ngIf="(isSelectedLanguage(language) | async)">check</mat-icon>
+        <mat-icon mat-list-icon *ngIf="!(isSelectedLanguage(language) | async)"></mat-icon>
+        <h4 mat-line>{{ language.name }}</h4>
+      </a>
+    </mat-nav-list>
+  </ng-template>
+  <ng-template [ngSwitchCase]="modeEnum.location">
+    <mat-toolbar (click)="$event.stopPropagation()">
+      <button
+        mat-icon-button
+        aria-label="Go back"
+        i18n-aria-label
+        (click)="$event.stopPropagation(); mode = modeEnum.main"
+      >
+        <mat-icon class="md-24">arrow_back</mat-icon>
+      </button>
+      <span i18n>Choose your location</span>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item>
+        <mat-icon mat-list-icon>check</mat-icon>
+        <h4 mat-line i18n>Poland</h4>
+      </a>
+      <a mat-list-item>
+        <mat-icon mat-list-icon></mat-icon>
+        <h4 mat-line i18n>United States</h4>
+      </a>
+    </mat-nav-list>
+  </ng-template>
+</mat-menu>
+<button routerLink="/login" mat-button color="secondary" *ngIf="!user" i18n>Sign in</button>

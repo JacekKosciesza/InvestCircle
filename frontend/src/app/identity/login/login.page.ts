@@ -2,7 +2,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import { LoginModel } from './shared';
 import { IdentityService } from '../shared';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, switchMap, tap } from 'rxjs/operators';
+import gql from 'graphql-tag';
+import { Apollo } from 'apollo-angular';
+
+const SET_USER = gql`
+  mutation SetUser($user: Object!) {
+    setUser(user: $user) @client
+  }
+`;
 
 @Component({
   selector: 'login-page',
@@ -15,7 +23,7 @@ export class LoginPage implements OnInit, OnDestroy {
 
   private unsubscribe: Subject<void> = new Subject();
 
-  constructor(private identityService: IdentityService) {}
+  constructor(private identityService: IdentityService, private apollo: Apollo) {}
 
   ngOnInit(): void {
     this.loginForm = of({ email: '', password: '' });
@@ -26,10 +34,22 @@ export class LoginPage implements OnInit, OnDestroy {
   onLogin(form: LoginModel): void {
     this.identityService
       .login(form.email, form.password)
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe(token => {
-        console.log(token);
-      });
+      .pipe(
+        takeUntil(this.unsubscribe),
+        tap(token => console.log(token)),
+        switchMap(token => this.identityService.decodeToken(token)),
+        tap(user => console.log(user)),
+        switchMap(user =>
+          this.apollo.mutate({
+            mutation: SET_USER,
+            variables: {
+              user,
+            },
+          }),
+        ),
+        switchMap(_ => this.identityService.redirect()),
+      )
+      .subscribe();
   }
 
   ngOnDestroy(): void {

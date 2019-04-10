@@ -4,6 +4,7 @@ export interface User {
   email: string;
   photo: string;
   admin: boolean;
+  __typename?: string;
 }
 
 export const testUser: User = {
